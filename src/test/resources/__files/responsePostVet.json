@@ -1,0 +1,11 @@
+{
+  "id": "{{jsonPath request.body '$.id'}}",
+  "firstName": "{{jsonPath request.body '$.firstName'}}",
+  "lastName": "{{jsonPath request.body '$.lastName'}}",
+  "specialties": [
+    {
+      "id": 2,
+      "name": "surgeon"
+    }
+  ]
+}

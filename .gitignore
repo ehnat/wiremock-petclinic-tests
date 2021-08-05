@@ -1,0 +1,10 @@
+# Compiled source
+*.class
+
+# Others
+.idea
+*.iml
+*.log
+.gradle
+/build
+*/build

@@ -1,0 +1,16 @@
+dependencies {
+    implementation 'com.github.tomakehurst:wiremock-jre8:2.29.1'
+    implementation 'org.codehaus.groovy:groovy-all:3.0.8'
+    implementation 'io.rest-assured:rest-assured:3.3.0'
+    implementation 'org.aeonbits.owner:owner:1.0.12'
+    implementation 'com.github.javafaker:javafaker:1.0.2'
+
+    testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0', {
+        exclude module: 'groovy-all'
+    }
+}
+
+test {
+    testLogging.showStandardStreams = true
+    useJUnitPlatform()
+}
