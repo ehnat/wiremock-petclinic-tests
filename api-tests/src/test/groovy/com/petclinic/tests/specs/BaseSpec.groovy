@@ -19,7 +19,7 @@ class BaseSpec extends Specification {
         resetStubs(wireMockClient)
     }
 
-//    def cleanup(){
-//        resetStubs(wireMockClient)
-//    }
+    def cleanup() {
+        resetStubs(wireMockClient)
+    }
 }

@@ -1,0 +1,168 @@
+{
+  "info": {
+    "_postman_id": "0dc0ea6d-8d29-4be2-910a-12e8fbf469e0",
+    "name": "PetClinic_wiremock",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "mocks",
+      "item": [
+        {
+          "name": "vets",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/vets",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "vets"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "add vet",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"id\": 1,\r\n  \"firstName\": \"Lars\",\r\n  \"lastName\": \"Bernard\",\r\n  \"specialties\": [\r\n    {\r\n      \"id\": 2,\r\n      \"name\": \"surgeon\"\r\n    }\r\n  ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/vets",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "vets"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "404 not found",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/vetsNOT_EXISTING",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "vetsNOT_EXISTING"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "petclinic-api",
+      "item": [
+        {
+          "name": "404 not found",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:9966/petclinic/api/vetsss",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "9966",
+              "path": [
+                "petclinic",
+                "api",
+                "vetsss"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "server calls",
+      "item": [
+        {
+          "name": "all mappings (http)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:{{httpPort}}/__admin/mappings",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "{{httpPort}}",
+              "path": [
+                "__admin",
+                "mappings"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "swagger",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/__admin/swagger-ui/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "__admin",
+                "swagger-ui",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "all mappings (https)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/__admin/mappings",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "__admin",
+                "mappings"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
