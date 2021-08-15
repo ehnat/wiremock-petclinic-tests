@@ -4,6 +4,11 @@ The projects contains a few tests which use mocked api.
 Api calls  are mocked by using Wiremock.
 
 
+### Technical description
+- Used technologies: Groovy 3.0, Java 8, Gradle
+- Used frameworks/libraries: Wiremock, RestAssured, Spock 2.0
+- Test reports: Gradle
+
 ### Mocked application:
 Repository for Petclinic application:
 `https://github.com/spring-petclinic/spring-petclinic-rest`.
