@@ -8,6 +8,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.aResponse
 import static com.github.tomakehurst.wiremock.client.WireMock.containing
 import static com.github.tomakehurst.wiremock.client.WireMock.get
 import static com.github.tomakehurst.wiremock.client.WireMock.matchingJsonPath
+import static com.github.tomakehurst.wiremock.client.WireMock.notFound
 import static com.github.tomakehurst.wiremock.client.WireMock.post
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo
 import static com.github.tomakehurst.wiremock.client.WireMock.urlPathEqualTo
@@ -21,16 +22,16 @@ class VetStubsCreator {
         wireMockClient.register(
                 get(urlEqualTo(Paths.VETS))
                         .atPriority(1)
-                        .willReturn(responseAsJsonFile('responseGetVets.json'))
+                        .willReturn(responseAsJsonFile('__files/responseGetVets.json', SC_OK))
         )
     }
 
     static StubMapping createError404(WireMock wireMockClient, String url) {
         wireMockClient.register(
                 get(urlPathEqualTo("${Paths.VETS}$url"))
-                        .willReturn(WireMock.notFound()
+                        .willReturn(notFound()
                                 .withHeader(CONTENT_TYPE, 'application/json')
-                                .withBodyFile('responseError404.json')
+                                .withBody(MockResponse.read('__files/responseError404.json'))
                         )
         )
     }
@@ -45,18 +46,14 @@ class VetStubsCreator {
                         .withRequestBody(matchingJsonPath("\$[?(@.lastName == \'${vetDetails.get('lastName')}\')]"))
                         .withRequestBody(matchingJsonPath('$[?(@.specialties[0].id == 2)]'))
                         .withRequestBody(matchingJsonPath('$[?(@.specialties[0].name == \'surgeon\')]'))
-                        .willReturn(aResponse()
-                                .withStatus(SC_CREATED)
-                                .withHeader(CONTENT_TYPE, 'application/json')
-                                .withBodyFile('responsePostVet.json')
-                        )
+                        .willReturn(responseAsJsonFile('__files/responsePostVet.json', SC_CREATED))
         )
     }
 
-    private static ResponseDefinitionBuilder responseAsJsonFile(String jsonFile) {
+    private static ResponseDefinitionBuilder responseAsJsonFile(String jsonFile, int status) {
         aResponse()
-                .withStatus(SC_OK)
+                .withStatus(status)
                 .withHeader(CONTENT_TYPE, 'application/json')
-                .withBodyFile(jsonFile)
+                .withBody(MockResponse.read(jsonFile))
     }
 }
