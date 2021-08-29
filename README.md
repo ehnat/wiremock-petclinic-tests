@@ -1,6 +1,6 @@
 ## Wiremock-petclinic-tests
 
-The projects contains a few tests which use mocked api. Api calls are mocked by using Wiremock.
+The project contains a few tests which use mocked api. Api calls are mocked by using Wiremock.
 
 ### Technical description
 
@@ -61,4 +61,4 @@ Folder `postman` - there is a postman collection which I created to support myse
 ### Helpful links:
 
 - https://mkyong.com/java/java-read-a-file-from-resources-folder/
-- read https://howtodoinjava.com/java/io/read-file-from-resources-folder/
+- https://howtodoinjava.com/java/io/read-file-from-resources-folder/
