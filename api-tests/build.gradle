@@ -11,6 +11,32 @@ dependencies {
 }
 
 test {
-    testLogging.showStandardStreams = true
+    systemProperties System.getProperties()
+
+    doFirst {
+        def DEFAULT_TESTS = 'positive'
+        def TESTS_PROPERTY_NAME = 'testGroup'
+
+        def chosenTests = System.getProperty(TESTS_PROPERTY_NAME) ?: DEFAULT_TESTS
+        println "Chosen tests $chosenTests"
+
+        systemProperty TESTS_PROPERTY_NAME, chosenTests
+
+        switch (chosenTests) {
+            case 'positive':
+                include '**/specs/positive/**'
+                break
+            case 'negative':
+                include '**/specs/negative/**'
+                break
+            case 'all':
+                include '**/specs/positive/**', '**/specs/negative/**'
+                break
+            default:
+                include '**/specs/positive/**'
+                break
+        }
+    }
     useJUnitPlatform()
+    testLogging.showStandardStreams = true
 }

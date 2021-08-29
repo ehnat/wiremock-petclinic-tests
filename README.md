@@ -49,8 +49,9 @@ Folder `postman` - there is a postman collection which I created to support myse
 1. run wiremock server (point above `How to run wiremock server`)
 1. run tests:
 
-- mac: `./gradlew clean test --info --continue`
-- windows: `gradlew.bat clean test --info --continue`
+- mac: `./gradlew clean test -DtestGroup=TEST_GROUP --info --continue`
+- windows: `gradlew.bat clean test -DtestGroup=TEST_GROUP --info --continue`
+  `TEST_GROUP` - one of: `positive`, `negative`, `all` (default is `positive`)
 
 ### Test reports:
 
