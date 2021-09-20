@@ -18,7 +18,13 @@ import static org.apache.http.HttpStatus.SC_OK
 
 class VetStubsCreator {
 
-    static StubMapping createGetVets(WireMock wireMockClient) {
+    private WireMock wireMockClient
+
+    VetStubsCreator(WireMock wireMockClient) {
+        this.wireMockClient = wireMockClient
+    }
+
+    StubMapping createGetVets() {
         wireMockClient.register(
                 get(urlEqualTo(Paths.VETS))
                         .atPriority(1)
@@ -26,7 +32,7 @@ class VetStubsCreator {
         )
     }
 
-    static StubMapping createError404(WireMock wireMockClient, String url) {
+    StubMapping createError404(String url) {
         wireMockClient.register(
                 get(urlPathEqualTo("${Paths.VETS}$url"))
                         .willReturn(notFound()
@@ -36,7 +42,7 @@ class VetStubsCreator {
         )
     }
 
-    static StubMapping createPostVet(WireMock wireMockClient, Map vetDetails) {
+    StubMapping createPostVet(Map vetDetails) {
         wireMockClient.register(
                 post(urlEqualTo(Paths.VETS))
                         .atPriority(1)

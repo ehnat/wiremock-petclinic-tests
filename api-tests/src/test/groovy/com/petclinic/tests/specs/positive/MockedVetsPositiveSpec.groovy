@@ -1,7 +1,6 @@
 package com.petclinic.tests.specs.positive
 
 import com.petclinic.dto.Vet
-import com.petclinic.mock.databuilders.VetStubsCreator
 import com.petclinic.tests.services.VetService
 import com.petclinic.tests.specs.BaseSpec
 
@@ -11,7 +10,7 @@ class MockedVetsPositiveSpec extends BaseSpec {
 
     def 'should return all vets'() {
         given: 'stub for get vets is created'
-        VetStubsCreator.createGetVets(wireMockClient)
+        vetStubsCreator.createGetVets()
 
         when: 'request for getting all vets is sent'
         List<Vet> allVets = VetService.getAllVets()
@@ -30,7 +29,7 @@ class MockedVetsPositiveSpec extends BaseSpec {
         Vet vetRequest = sampleVetRequest(vetDetails)
 
         and: 'stub for add vet is created'
-        VetStubsCreator.createPostVet(wireMockClient, vetDetails)
+        vetStubsCreator.createPostVet(vetDetails)
 
         when: 'request for add vet is sent'
         Vet addedVet = VetService.addVet(vetRequest)
